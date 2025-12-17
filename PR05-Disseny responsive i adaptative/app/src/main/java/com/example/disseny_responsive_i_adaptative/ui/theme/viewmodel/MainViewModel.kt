@@ -100,4 +100,29 @@ class MainViewModel: ViewModel() {
         _fullNameError.value = ""
         return true
     }
+
+    private fun validateBirthDate(): Boolean {
+        val date = _birthDate.value
+
+        if (date.isNullOrBlank()) {
+            _birthDateError.value = "La data de naixement és obligatòria"
+            return false
+        }
+
+        // Verificar formato básico DD/MM/AAAA
+        if (date.length != 10) {
+            _birthDateError.value = "Format: DD/MM/AAAA (10 caràcters)"
+            return false
+        }
+
+        // Verificar que tenga las barras
+        if (date[2] != '/' || date[5] != '/') {
+            _birthDateError.value = "Format vàlid: DD/MM/AAAA"
+            return false
+        }
+
+        _birthDateError.value = ""
+        return true
+    }
+
 }
