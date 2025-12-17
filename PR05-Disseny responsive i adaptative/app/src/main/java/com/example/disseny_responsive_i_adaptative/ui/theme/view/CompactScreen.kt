@@ -24,10 +24,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.material3.OutlinedTextField
 
 @Composable
 fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
@@ -96,24 +92,5 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        OutlinedTextField(
-            value = fullName,
-            onValueChange = { viewModel.onFullNameChange(it) },
-            label = { Text("Nom complet") },
-            isError = fullNameError != null,
-            supportingText = {
-                if (fullNameError != null) {
-                    Text(
-                        text = fullNameError,
-                        color = MaterialTheme.colorScheme.error
-                    )
-                }
-            },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
-        )
-
-
     }
-}
 }
