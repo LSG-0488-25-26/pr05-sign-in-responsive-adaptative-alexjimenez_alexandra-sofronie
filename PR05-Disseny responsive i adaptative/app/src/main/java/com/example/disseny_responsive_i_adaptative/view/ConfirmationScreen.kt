@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -119,8 +120,40 @@ fun ConfirmationScreen(navController: NavController, username: String) {
                     )
 
                     Spacer(modifier = Modifier.height(24.dp))
+
+                    //Informació addicional
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = CardDefaults.cardColors(containerColor = Color(0xFFF3E5F5))
+                    ) {
+                        Column(modifier = Modifier.padding(20.dp)) {
+                            Text(
+                                text = "Següents passos:",
+                                fontSize = if (isCompact) 16.sp else 18.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF6200EE)
+                            )
+                            Spacer(modifier = Modifier.height(12.dp))
+                            InfoItem("✉️", "Revisa el teu email")
+                            InfoItem("📱", "Descarrega la app")
+                            InfoItem("🗓️", "Reserva la teva classe")
+                            InfoItem("🎉", "Gaudeix del primer mes!")
+                        }
+                    }
                 }
             }
         }
+    }
+}
+
+//Funció implementada para la Informació adicional dentro del Card
+@Composable
+fun InfoItem(icon: String, text: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(icon, fontSize = 18.sp, modifier = Modifier.padding(end = 12.dp))
+        Text(text, fontSize = 14.sp, color = Color.DarkGray)
     }
 }
