@@ -194,6 +194,23 @@ class MainViewModel: ViewModel() {
         return true
     }
 
+    private fun validatePassword(): Boolean {
+        val password = _password.value
+
+        if (password.isNullOrBlank()) {
+            _passwordError.value = "La contrasenya és obligatòria"
+            return false
+        }
+
+        if (password.length < 6) {
+            _passwordError.value = "Mínim 6 caràcters"
+            return false
+        }
+
+        _passwordError.value = ""
+        return true
+    }
+
     private fun validateConfirmPassword(): Boolean {
         val confirm = _confirmPassword.value
         val password = _password.value
