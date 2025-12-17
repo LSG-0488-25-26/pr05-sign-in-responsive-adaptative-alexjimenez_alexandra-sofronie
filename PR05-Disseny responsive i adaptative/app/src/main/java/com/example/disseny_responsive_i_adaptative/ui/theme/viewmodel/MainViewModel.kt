@@ -212,4 +212,9 @@ class MainViewModel: ViewModel() {
         return true
     }
 
+    private fun validateTerms(): Boolean {
+        val accepted = _termsAccepted.value
+        return accepted == true
+    }
+
 }
