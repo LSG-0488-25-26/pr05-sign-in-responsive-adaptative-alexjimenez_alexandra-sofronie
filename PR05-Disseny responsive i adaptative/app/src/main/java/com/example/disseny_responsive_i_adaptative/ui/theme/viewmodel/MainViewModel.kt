@@ -254,4 +254,15 @@ class MainViewModel: ViewModel() {
         }
     }
 
+    // Limpiar errores
+    fun clearAllErrors() {
+        _fullNameError.value = ""
+        _birthDateError.value = ""
+        _emailError.value = ""
+        _phoneError.value = ""
+        _usernameError.value = ""
+        _passwordError.value = ""
+        _confirmPasswordError.value = ""
+    }
+
 }

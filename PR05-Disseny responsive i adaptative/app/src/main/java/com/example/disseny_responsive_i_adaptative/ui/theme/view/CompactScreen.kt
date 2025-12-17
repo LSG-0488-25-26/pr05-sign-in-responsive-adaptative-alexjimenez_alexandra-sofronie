@@ -11,6 +11,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -18,6 +21,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -52,13 +56,13 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
     val termsAccepted by viewModel.termsAccepted.observeAsState(false)
 
     // Observar errores de validación
-    val fullNameError by viewModel.fullNameError.observeAsState()
-    val birthDateError by viewModel.birthDateError.observeAsState()
-    val emailError by viewModel.emailError.observeAsState()
-    val phoneError by viewModel.phoneError.observeAsState()
-    val usernameError by viewModel.usernameError.observeAsState()
-    val passwordError by viewModel.passwordError.observeAsState()
-    val confirmPasswordError by viewModel.confirmPasswordError.observeAsState()
+    val fullNameError by viewModel.fullNameError.observeAsState("")
+    val birthDateError by viewModel.birthDateError.observeAsState("")
+    val emailError by viewModel.emailError.observeAsState("")
+    val phoneError by viewModel.phoneError.observeAsState("")
+    val usernameError by viewModel.usernameError.observeAsState("")
+    val passwordError by viewModel.passwordError.observeAsState("")
+    val confirmPasswordError by viewModel.confirmPasswordError.observeAsState("")
 
     // Estados locales para UI
     var passwordVisible by remember { mutableStateOf(false) }
@@ -116,9 +120,9 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
                 value = fullName,
                 onValueChange = { viewModel.onFullNameChange(it) },
                 label = { Text("Nom complet") },
-                isError = fullNameError != null,
+                isError = fullNameError.isNotEmpty(),
                 supportingText = {
-                    if (fullNameError != null) {
+                    if (fullNameError.isNotEmpty()) {
                         Text(
                             text = fullNameError,
                             color = MaterialTheme.colorScheme.error
@@ -135,9 +139,9 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
                 value = birthDate,
                 onValueChange = { viewModel.onBirthDateChange(it) },
                 label = { Text("Data de naixement") },
-                isError = birthDateError != null,
+                isError = birthDateError.isNotEmpty(),
                 supportingText = {
-                    if (birthDateError != null) {
+                    if (birthDateError.isNotEmpty()) {
                         Text(
                             text = birthDateError,
                             color = MaterialTheme.colorScheme.error
@@ -155,9 +159,9 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
                 value = email,
                 onValueChange = { viewModel.onEmailChange(it) },
                 label = { Text("Email") },
-                isError = emailError != null,
+                isError = emailError.isNotEmpty(),
                 supportingText = {
-                    if (emailError != null) {
+                    if (emailError.isNotEmpty()) {
                         Text(
                             text = emailError,
                             color = MaterialTheme.colorScheme.error
@@ -175,9 +179,9 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
                 value = phone,
                 onValueChange = { viewModel.onPhoneChange(it) },
                 label = { Text("Telèfon") },
-                isError = phoneError != null,
+                isError = phoneError.isNotEmpty(),
                 supportingText = {
-                    if (phoneError != null) {
+                    if (phoneError.isNotEmpty()) {
                         Text(
                             text = phoneError,
                             color = MaterialTheme.colorScheme.error
@@ -195,9 +199,9 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
                 value = username,
                 onValueChange = { viewModel.onUsernameChange(it) },
                 label = { Text("Nom d'usuari") },
-                isError = usernameError != null,
+                isError = usernameError.isNotEmpty(),
                 supportingText = {
-                    if (usernameError != null) {
+                    if (usernameError.isNotEmpty()) {
                         Text(
                             text = usernameError,
                             color = MaterialTheme.colorScheme.error
@@ -214,9 +218,9 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
                 value = password,
                 onValueChange = { viewModel.onPasswordChange(it) },
                 label = { Text("Contrasenya") },
-                isError = passwordError != null,
+                isError = passwordError.isNotEmpty(),
                 supportingText = {
-                    if (passwordError != null) {
+                    if (passwordError.isNotEmpty()) {
                         Text(
                             text = passwordError,
                             color = MaterialTheme.colorScheme.error
@@ -254,9 +258,9 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
                 value = confirmPassword,
                 onValueChange = { viewModel.onConfirmPasswordChange(it) },
                 label = { Text("Confirmar contrasenya") },
-                isError = confirmPasswordError != null,
+                isError = confirmPasswordError.isNotEmpty(),
                 supportingText = {
-                    if (confirmPasswordError != null) {
+                    if (confirmPasswordError.isNotEmpty()) {
                         Text(
                             text = confirmPasswordError,
                             color = MaterialTheme.colorScheme.error
