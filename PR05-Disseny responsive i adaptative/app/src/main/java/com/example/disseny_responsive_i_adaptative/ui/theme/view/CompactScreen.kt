@@ -155,5 +155,25 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        OutlinedTextField(
+            value = phone,
+            onValueChange = { viewModel.onPhoneChange(it) },
+            label = { Text("Telèfon") },
+            isError = phoneError != null,
+            supportingText = {
+                if (phoneError != null) {
+                    Text(
+                        text = phoneError,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
     }
 }
