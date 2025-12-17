@@ -1,7 +1,9 @@
 package com.example.disseny_responsive_i_adaptative.ui.theme.view
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +14,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -107,6 +110,52 @@ fun MediumScreen(navController: NavController, viewModel: MainViewModel) {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
+            // Primera fila: Nombre completo y fecha de nacimiento
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                // Nom complet (mitad izquierda)
+                OutlinedTextField(
+                    value = fullName,
+                    onValueChange = { viewModel.onFullNameChange(it) },
+                    label = { Text("Nom complet") },
+                    isError = fullNameError != null,
+                    supportingText = {
+                        if (fullNameError != null) {
+                            Text(
+                                text = fullNameError,
+                                color = MaterialTheme.colorScheme.error,
+                                fontSize = 12.sp
+                            )
+                        }
+                    },
+                    modifier = Modifier.weight(1f),
+                    singleLine = true
+                )
+
+                // Fecha nacimiento
+                OutlinedTextField(
+                    value = birthDate,
+                    onValueChange = { viewModel.onBirthDateChange(it) },
+                    label = { Text("Data naixement") },
+                    isError = birthDateError != null,
+                    supportingText = {
+                        if (birthDateError != null) {
+                            Text(
+                                text = birthDateError,
+                                color = MaterialTheme.colorScheme.error,
+                                fontSize = 12.sp
+                            )
+                        }
+                    },
+                    modifier = Modifier.weight(1f),
+                    singleLine = true,
+                    placeholder = { Text("DD/MM/AAAA") }
+                )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
         }
     }
 }
