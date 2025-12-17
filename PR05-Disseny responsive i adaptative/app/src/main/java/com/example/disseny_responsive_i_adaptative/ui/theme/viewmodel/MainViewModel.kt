@@ -177,4 +177,39 @@ class MainViewModel: ViewModel() {
         return true
     }
 
+    private fun validateUsername(): Boolean {
+        val username = _username.value
+
+        if (username.isNullOrBlank()) {
+            _usernameError.value = "El nom d'usuari és obligatori"
+            return false
+        }
+
+        if (username.length < 4) {
+            _usernameError.value = "Mínim 4 caràcters"
+            return false
+        }
+
+        _usernameError.value = ""
+        return true
+    }
+
+    private fun validateConfirmPassword(): Boolean {
+        val confirm = _confirmPassword.value
+        val password = _password.value
+
+        if (confirm.isNullOrBlank()) {
+            _confirmPasswordError.value = "Confirma la contrasenya"
+            return false
+        }
+
+        if (confirm != password) {
+            _confirmPasswordError.value = "Les contrasenyes no coincideixen"
+            return false
+        }
+
+        _confirmPasswordError.value = ""
+        return true
+    }
+
 }
