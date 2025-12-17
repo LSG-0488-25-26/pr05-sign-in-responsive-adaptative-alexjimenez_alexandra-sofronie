@@ -170,7 +170,7 @@ class MainViewModel: ViewModel() {
                 break
             }
         }
-
+        //Si NO todos los numeros son Digitos
         if (!allDigits) {
             _phoneError.value = "Només es permeten números"
             return false
@@ -241,7 +241,7 @@ class MainViewModel: ViewModel() {
     }
 
     fun validateAll(): Boolean {
-        // Validamos todos los campos
+        //Validamos todos los campos
         val isValidFullName = validateFullName()
         val isValidBirthDate = validateBirthDate()
         val isValidEmail = validateEmail()
@@ -260,7 +260,7 @@ class MainViewModel: ViewModel() {
         }
     }
 
-    // Limpiar errores
+    //Limpiamos los errores
     fun clearAllErrors() {
         _fullNameError.value = ""
         _birthDateError.value = ""
@@ -271,4 +271,23 @@ class MainViewModel: ViewModel() {
         _confirmPasswordError.value = ""
     }
 
+    //Reset para el formulario
+    fun resetForm() {
+        _fullName.value = ""                //Borra el nombre
+        _birthDate.value = ""               //Borra la fecha
+        _email.value = ""                   //Borra el email
+        _phone.value = ""                   //Borra el teléfono
+        _username.value = ""                //Borra el usuario
+        _password.value = ""                //Borra la contraseña
+        _confirmPassword.value = ""         //Borra la confirmación
+        _termsAccepted.value = false        //Desmarca los términos
+
+        _fullNameError.value = ""           //Limpia error del nombre completo
+        _birthDateError.value = ""          //Limpia error de la fecha de nacimiento
+        _emailError.value = ""              //Limpia error del email
+        _phoneError.value = ""              //Limpia error del teléfono
+        _usernameError.value = ""           //Limpia error del usuario
+        _passwordError.value = ""           //Limpia error de la contraseña
+        _confirmPasswordError.value = ""    //Limpia error de confirmación de contraseña
+    }
 }
