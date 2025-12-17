@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 class MainViewModel: ViewModel() {
-    // Estados de los campos del formulario
+    //Estados de los campos del formulario
     private val _fullName = MutableLiveData("")
     val fullName: LiveData<String> = _fullName
 
