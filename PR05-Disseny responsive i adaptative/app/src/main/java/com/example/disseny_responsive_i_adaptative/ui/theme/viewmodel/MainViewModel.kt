@@ -234,4 +234,24 @@ class MainViewModel: ViewModel() {
         return accepted == true
     }
 
+    fun validateAll(): Boolean {
+        // Validamos todos los campos
+        val isValidFullName = validateFullName()
+        val isValidBirthDate = validateBirthDate()
+        val isValidEmail = validateEmail()
+        val isValidPhone = validatePhone()
+        val isValidUsername = validateUsername()
+        val isValidPassword = validatePassword()
+        val isValidConfirmPassword = validateConfirmPassword()
+        val isValidTerms = validateTerms()
+
+        if (isValidFullName && isValidBirthDate && isValidEmail &&
+            isValidPhone && isValidUsername && isValidPassword &&
+            isValidConfirmPassword && isValidTerms) {
+            return true
+        } else {
+            return false
+        }
+    }
+
 }
