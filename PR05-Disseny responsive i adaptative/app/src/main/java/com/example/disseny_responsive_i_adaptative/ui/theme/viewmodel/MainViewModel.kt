@@ -145,4 +145,36 @@ class MainViewModel: ViewModel() {
         return true
     }
 
+    private fun validatePhone(): Boolean {
+        val phone = _phone.value
+
+        if (phone.isNullOrBlank()) {
+            _phoneError.value = "El telèfon és obligatori"
+            return false
+        }
+
+        // Verificar que tenga 9 dígitos
+        if (phone.length != 9) {
+            _phoneError.value = "Ha de tenir 9 números"
+            return false
+        }
+
+        // Verificar que todos sean números
+        var allDigits = true
+        for (char in phone) {
+            if (!char.isDigit()) {
+                allDigits = false
+                break
+            }
+        }
+
+        if (!allDigits) {
+            _phoneError.value = "Només es permeten números"
+            return false
+        }
+
+        _phoneError.value = ""
+        return true
+    }
+
 }
