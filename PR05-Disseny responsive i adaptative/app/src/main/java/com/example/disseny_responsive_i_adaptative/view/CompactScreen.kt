@@ -1,4 +1,4 @@
-package com.example.disseny_responsive_i_adaptative.ui.theme.view
+package com.example.disseny_responsive_i_adaptative.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -29,7 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
-import com.example.disseny_responsive_i_adaptative.ui.theme.viewmodel.MainViewModel
+import com.example.disseny_responsive_i_adaptative.viewmodel.MainViewModel
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue

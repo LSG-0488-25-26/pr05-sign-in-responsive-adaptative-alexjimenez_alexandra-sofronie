@@ -1,9 +1,10 @@
-package com.example.disseny_responsive_i_adaptative.ui.theme.viewmodel
+package com.example.disseny_responsive_i_adaptative.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import android.util.Patterns
+import kotlin.text.iterator
 
 class MainViewModel: ViewModel() {
     //Estados de los campos del formulario

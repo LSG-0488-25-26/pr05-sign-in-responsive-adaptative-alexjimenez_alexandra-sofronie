@@ -1,4 +1,4 @@
-package com.example.disseny_responsive_i_adaptative.ui.theme.view
+package com.example.disseny_responsive_i_adaptative.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

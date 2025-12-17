@@ -1,4 +1,4 @@
-package com.example.disseny_responsive_i_adaptative.ui.theme.view
+package com.example.disseny_responsive_i_adaptative.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -41,7 +41,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.disseny_responsive_i_adaptative.ui.theme.viewmodel.MainViewModel
+import com.example.disseny_responsive_i_adaptative.viewmodel.MainViewModel
 
 @Composable
 fun MediumScreen(navController: NavController, viewModel: MainViewModel) {

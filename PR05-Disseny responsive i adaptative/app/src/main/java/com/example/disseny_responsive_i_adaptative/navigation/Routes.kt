@@ -1,4 +1,4 @@
-package com.example.disseny_responsive_i_adaptative.ui.theme.navigation
+package com.example.disseny_responsive_i_adaptative.navigation
 
 sealed class Routes(val route: String) {
     object Register : Routes("register")
