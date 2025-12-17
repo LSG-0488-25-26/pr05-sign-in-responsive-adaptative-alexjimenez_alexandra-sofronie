@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
@@ -351,6 +353,25 @@ fun MediumScreen(navController: NavController, viewModel: MainViewModel) {
                     fontSize = 12.sp,
                     modifier = Modifier.padding(start = 16.dp, top = 4.dp)
                 )
+            }
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            Button(
+                onClick = {
+                    showError = true
+                    val isValid = viewModel.validateAll()
+                    if (isValid) {
+                        navController.navigate("confirmation/$username")
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxWidth(0.6f)  // 60% del ancho
+                    .height(56.dp)
+                    .align(Alignment.CenterHorizontally),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF6200EE))
+            ) {
+                Text("Registrar-me", fontSize = 18.sp, fontWeight = FontWeight.Bold)
             }
 
             Spacer(modifier = Modifier.height(32.dp))
