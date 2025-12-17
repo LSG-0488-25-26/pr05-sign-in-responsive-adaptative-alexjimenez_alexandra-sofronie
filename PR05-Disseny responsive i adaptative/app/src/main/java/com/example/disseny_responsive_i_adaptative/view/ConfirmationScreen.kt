@@ -1,28 +1,96 @@
 package com.example.disseny_responsive_i_adaptative.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.disseny_responsive_i_adaptative.navigation.Routes
+
+/**
+ * Pantalla de confirmació ADAPTATIVA
+ * S'adapta a les 3 mides de pantalla utilitzant BoxWithConstraints
+ */
 
 @Composable
-fun ConfirmationScreen(
-) {
-    Column(
+fun ConfirmationScreen(navController: NavController, username: String) {
+    BoxWithConstraints(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(Color(0xFFF5F5F5))
     ) {
+        val isCompact = maxWidth < 600.dp
+        val isMedium = maxWidth >= 600.dp && maxWidth < 840.dp
 
-        Text(
-            text = "Benvingut/da!",
-        )
+        //Column principal
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(if (isCompact) 24.dp else 48.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            //Card de confirmación
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth(
+                        when {
+                            isCompact -> 1f
+                            isMedium -> 0.8f
+                            else -> 0.6f
+                        }
+                    )
+                    .wrapContentHeight(),
+                colors = CardDefaults.cardColors(containerColor = Color.White),
+                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(if (isCompact) 32.dp else 48.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    //Icona de confirmació
+                    Icon(
+                        imageVector = Icons.Default.CheckCircle,
+                        contentDescription = "Success",
+                        tint = Color(0xFF4CAF50),
+                        modifier = Modifier.size(if (isCompact) 80.dp else 120.dp)
+                    )
+
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    //Títol
+                    Text(
+                        text = "Registre Completat!",
+                        fontSize = if (isCompact) 28.sp else 36.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF6200EE),
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+        }
     }
 }
