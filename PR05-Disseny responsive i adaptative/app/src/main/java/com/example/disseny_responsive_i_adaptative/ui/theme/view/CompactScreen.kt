@@ -175,5 +175,24 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        OutlinedTextField(
+            value = username,
+            onValueChange = { viewModel.onUsernameChange(it) },
+            label = { Text("Nom d'usuari") },
+            isError = usernameError != null,
+            supportingText = {
+                if (usernameError != null) {
+                    Text(
+                        text = usernameError,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
     }
 }
