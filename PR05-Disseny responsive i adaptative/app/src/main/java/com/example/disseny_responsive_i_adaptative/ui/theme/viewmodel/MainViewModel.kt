@@ -51,4 +51,37 @@ class MainViewModel: ViewModel() {
 
     private val _birthDateError = MutableLiveData<String>("")
     val birthDateError: LiveData<String> = _birthDateError
+
+    fun onFullNameChange(value: String) {
+        _fullName.value = value
+    }
+
+    fun onBirthDateChange(value: String) {
+        _birthDate.value = value
+    }
+
+    fun onEmailChange(value: String) {
+        _email.value = value
+    }
+
+    fun onPhoneChange(value: String) {
+        _phone.value = value
+    }
+
+    fun onUsernameChange(value: String) {
+        _username.value = value
+    }
+
+    fun onPasswordChange(value: String) {
+        _password.value = value
+    }
+
+    fun onConfirmPasswordChange(value: String) {
+        _confirmPassword.value = value
+    }
+
+    fun onTermsAcceptedChange(value: Boolean) {
+        _termsAccepted.value = value
+    }
+
 }
