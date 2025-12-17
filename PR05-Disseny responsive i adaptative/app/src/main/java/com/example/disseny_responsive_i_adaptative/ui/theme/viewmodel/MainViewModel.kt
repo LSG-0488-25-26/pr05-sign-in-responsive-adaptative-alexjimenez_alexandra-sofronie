@@ -85,6 +85,7 @@ class MainViewModel: ViewModel() {
         _termsAccepted.value = value
     }
 
+    //Funcion para validar el nombre
     private fun validateFullName(): Boolean {
         val name = _fullName.value.orEmpty()
 
@@ -101,7 +102,8 @@ class MainViewModel: ViewModel() {
         _fullNameError.value = ""
         return true
     }
-
+    
+    //Funcion para validad la fecha de nacimiento
     private fun validateBirthDate(): Boolean {
         val date = _birthDate.value.orEmpty()
 
@@ -126,6 +128,7 @@ class MainViewModel: ViewModel() {
         return true
     }
 
+    //funcion para validar el email
     private fun validateEmail(): Boolean {
         val email = _email.value.orEmpty()
 
@@ -144,7 +147,7 @@ class MainViewModel: ViewModel() {
         _emailError.value = ""
         return true
     }
-
+    //funcion para validar el numero de telefono
     private fun validatePhone(): Boolean {
         val phone = _phone.value.orEmpty()
 
@@ -177,6 +180,7 @@ class MainViewModel: ViewModel() {
         return true
     }
 
+    //funcion para validad el nombre del usuario
     private fun validateUsername(): Boolean {
         val username = _username.value.orEmpty()
 
@@ -194,6 +198,7 @@ class MainViewModel: ViewModel() {
         return true
     }
 
+    //funcion para validar el password
     private fun validatePassword(): Boolean {
         val password = _password.value.orEmpty()
 
@@ -211,6 +216,7 @@ class MainViewModel: ViewModel() {
         return true
     }
 
+    //funcion para confirmar el password y validarlo
     private fun validateConfirmPassword(): Boolean {
         val confirm = _confirmPassword.value.orEmpty()
         val password = _password.value.orEmpty()
