@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -108,6 +109,26 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
             },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = birthDate,
+            onValueChange = { viewModel.onBirthDateChange(it) },
+            label = { Text("Data de naixement") },
+            isError = birthDateError != null,
+            supportingText = {
+                if (birthDateError != null) {
+                    Text(
+                        text = birthDateError,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            placeholder = { Text("DD/MM/AAAA") }
         )
 
         Spacer(modifier = Modifier.height(8.dp))
