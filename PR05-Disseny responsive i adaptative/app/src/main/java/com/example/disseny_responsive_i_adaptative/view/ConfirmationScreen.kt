@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -79,7 +80,7 @@ fun ConfirmationScreen(navController: NavController, username: String) {
                         modifier = Modifier.size(if (isCompact) 80.dp else 120.dp)
                     )
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(24.dp)) //Espacio entre los elementos, en este caso de 24.dp
 
                     //Títol
                     Text(
@@ -89,6 +90,35 @@ fun ConfirmationScreen(navController: NavController, username: String) {
                         color = Color(0xFF6200EE),
                         textAlign = TextAlign.Center
                     )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // Missatge de benvinguda
+                    Text(
+                        text = "Benvingut/da a FitLife Gym,",
+                        fontSize = if (isCompact) 18.sp else 22.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color.Gray
+                    )
+
+                    Text(
+                        text = username.ifEmpty { "Usuari" }, //Si está vacio, mostrará "Usuari"
+                        fontSize = if (isCompact) 24.sp else 28.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        color = Color(0xFF6200EE),
+                        modifier = Modifier.padding(vertical = 8.dp)
+                    )
+
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    //Divider (linia divisora)
+                    HorizontalDivider(
+                        modifier = Modifier.fillMaxWidth(0.8f),
+                        color = Color.LightGray
+                    )
+
+                    Spacer(modifier = Modifier.height(24.dp))
                 }
             }
         }
