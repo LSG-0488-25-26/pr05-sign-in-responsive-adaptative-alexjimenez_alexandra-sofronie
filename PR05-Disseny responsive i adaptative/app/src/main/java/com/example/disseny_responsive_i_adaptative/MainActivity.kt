@@ -41,16 +41,22 @@ class MainActivity : ComponentActivity() {
                                 viewModel = viewModel
                             )
                         }
+                        //Pantalla de confirmación con argumento username
                         composable(
                             route = Routes.Confirmation.route,
                             arguments = listOf(
                                 navArgument("username") { type = NavType.StringType }
                             )
                         ) { backStackEntry ->
+                            //Obtenemos el argumento username de la navegación
                             val args = backStackEntry.arguments!!   // Forzamos que los argumentos no sean nulos usando !!
                             val username = args.getString("username", "")
                             
-                            ConfirmationScreen()
+                            //Llamamos a la pantalla de confirmación pasando los siguientes paramteros
+                            ConfirmationScreen(
+                                navController = navController,  //Permitimso la navegación
+                                username = username             //Nombre del usuario registrado
+                            )
                         }
                     }
                 }
