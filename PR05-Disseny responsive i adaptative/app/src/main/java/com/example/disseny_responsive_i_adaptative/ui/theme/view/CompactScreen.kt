@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -26,6 +28,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -193,6 +197,86 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
         )
 
         Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = password,
+            onValueChange = { viewModel.onPasswordChange(it) },
+            label = { Text("Contrasenya") },
+            isError = passwordError != null,
+            supportingText = {
+                if (passwordError != null) {
+                    Text(
+                        text = passwordError,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            visualTransformation = if (passwordVisible) {
+                VisualTransformation.None
+            } else {
+                PasswordVisualTransformation()
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            trailingIcon = {
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    if (passwordVisible) {
+                        Icon(
+                            imageVector = Icons.Default.VisibilityOff,
+                            contentDescription = "Amagar contrasenya"
+                        )
+                    } else {
+                        Icon(
+                            imageVector = Icons.Default.Visibility,
+                            contentDescription = "Mostrar contrasenya"
+                        )
+                    }
+                }
+            }
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = confirmPassword,
+            onValueChange = { viewModel.onConfirmPasswordChange(it) },
+            label = { Text("Confirmar contrasenya") },
+            isError = confirmPasswordError != null,
+            supportingText = {
+                if (confirmPasswordError != null) {
+                    Text(
+                        text = confirmPasswordError,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            visualTransformation = if (confirmPasswordVisible) {
+                VisualTransformation.None
+            } else {
+                PasswordVisualTransformation()
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            trailingIcon = {
+                IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
+                    if (confirmPasswordVisible) {
+                        Icon(
+                            imageVector = Icons.Default.VisibilityOff,
+                            contentDescription = "Amagar contrasenya"
+                        )
+                    } else {
+                        Icon(
+                            imageVector = Icons.Default.Visibility,
+                            contentDescription = "Mostrar contrasenya"
+                        )
+                    }
+                }
+            }
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
     }
 }
