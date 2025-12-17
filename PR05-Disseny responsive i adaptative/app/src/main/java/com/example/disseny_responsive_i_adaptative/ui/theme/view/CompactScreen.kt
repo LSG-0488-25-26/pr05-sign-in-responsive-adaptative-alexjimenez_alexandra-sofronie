@@ -78,4 +78,19 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
     }
 
     Spacer(modifier = Modifier.height(16.dp))
+
+    // ========== FORMULARIO ==========
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+    ) {
+        Text(
+            text = "Registre de Soci",
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+
+    }
 }

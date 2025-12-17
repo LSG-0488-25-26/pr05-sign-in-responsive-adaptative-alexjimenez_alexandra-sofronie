@@ -13,8 +13,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.example.disseny_responsive_i_adaptative.ui.theme.Disseny_Responsive_i_AdaptativeTheme
 import com.example.disseny_responsive_i_adaptative.ui.theme.view.CompactScreen
+import com.example.disseny_responsive_i_adaptative.ui.theme.viewmodel.MainViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +27,10 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    CompactScreen()
+                    CompactScreen(
+                        navController = navController,
+                        viewModel = viewModel
+                    )
                 }
             }
         }
