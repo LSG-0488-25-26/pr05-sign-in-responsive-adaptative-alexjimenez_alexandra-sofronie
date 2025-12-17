@@ -2,6 +2,7 @@ package com.example.disseny_responsive_i_adaptative.ui.theme.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -277,6 +279,32 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Checkbox(
+                checked = termsAccepted,
+                onCheckedChange = { viewModel.onTermsAcceptedChange(it) }
+            )
+            Text(
+                text = "Accepto els termes i condicions",
+                fontSize = 14.sp,
+                modifier = Modifier.padding(start = 4.dp)
+            )
+        }
+
+        if (showError && !termsAccepted) {
+            Text(
+                text = "Has d'acceptar els termes i condicions",
+                color = MaterialTheme.colorScheme.error,
+                fontSize = 12.sp,
+                modifier = Modifier.padding(start = 48.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
 
     }
 }
