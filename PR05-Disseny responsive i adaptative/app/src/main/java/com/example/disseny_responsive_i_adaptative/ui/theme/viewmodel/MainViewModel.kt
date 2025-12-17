@@ -86,9 +86,9 @@ class MainViewModel: ViewModel() {
     }
 
     private fun validateFullName(): Boolean {
-        val name = _fullName.value
+        val name = _fullName.value.orEmpty()
 
-        if (name.isNullOrBlank()) {
+        if (name.isBlank()) {
             _fullNameError.value = "El nom complet és obligatori"
             return false
         }
@@ -103,9 +103,9 @@ class MainViewModel: ViewModel() {
     }
 
     private fun validateBirthDate(): Boolean {
-        val date = _birthDate.value
+        val date = _birthDate.value.orEmpty()
 
-        if (date.isNullOrBlank()) {
+        if (date.isBlank()) {
             _birthDateError.value = "La data de naixement és obligatòria"
             return false
         }
@@ -127,9 +127,9 @@ class MainViewModel: ViewModel() {
     }
 
     private fun validateEmail(): Boolean {
-        val email = _email.value
+        val email = _email.value.orEmpty()
 
-        if (email.isNullOrBlank()) {
+        if (email.isBlank()) {
             _emailError.value = "L'email és obligatori"
             return false
         }
@@ -146,9 +146,9 @@ class MainViewModel: ViewModel() {
     }
 
     private fun validatePhone(): Boolean {
-        val phone = _phone.value
+        val phone = _phone.value.orEmpty()
 
-        if (phone.isNullOrBlank()) {
+        if (phone.isBlank()) {
             _phoneError.value = "El telèfon és obligatori"
             return false
         }
@@ -178,9 +178,9 @@ class MainViewModel: ViewModel() {
     }
 
     private fun validateUsername(): Boolean {
-        val username = _username.value
+        val username = _username.value.orEmpty()
 
-        if (username.isNullOrBlank()) {
+        if (username.isBlank()) {
             _usernameError.value = "El nom d'usuari és obligatori"
             return false
         }
@@ -195,9 +195,9 @@ class MainViewModel: ViewModel() {
     }
 
     private fun validatePassword(): Boolean {
-        val password = _password.value
+        val password = _password.value.orEmpty()
 
-        if (password.isNullOrBlank()) {
+        if (password.isBlank()) {
             _passwordError.value = "La contrasenya és obligatòria"
             return false
         }
@@ -212,10 +212,10 @@ class MainViewModel: ViewModel() {
     }
 
     private fun validateConfirmPassword(): Boolean {
-        val confirm = _confirmPassword.value
-        val password = _password.value
+        val confirm = _confirmPassword.value.orEmpty()
+        val password = _password.value.orEmpty()
 
-        if (confirm.isNullOrBlank()) {
+        if (confirm.isBlank()) {
             _confirmPasswordError.value = "Confirma la contrasenya"
             return false
         }
