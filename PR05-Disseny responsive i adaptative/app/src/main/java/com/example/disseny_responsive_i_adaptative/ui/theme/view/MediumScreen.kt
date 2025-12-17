@@ -65,7 +65,7 @@ fun MediumScreen(navController: NavController, viewModel: MainViewModel) {
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = Color(0xFF6200EE)),
             shape = MaterialTheme.shapes.medium
-        ){
+        ) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -94,5 +94,19 @@ fun MediumScreen(navController: NavController, viewModel: MainViewModel) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
+        // ========== FORMULARIO ==========
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 32.dp)
+        ) {
+            Text(
+                text = "Registre de Soci",
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 24.dp)
+            )
+        }
     }
 }
