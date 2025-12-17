@@ -84,4 +84,20 @@ class MainViewModel: ViewModel() {
         _termsAccepted.value = value
     }
 
+    private fun validateFullName(): Boolean {
+        val name = _fullName.value
+
+        if (name.isNullOrBlank()) {
+            _fullNameError.value = "El nom complet és obligatori"
+            return false
+        }
+
+        if (name.length < 3) {
+            _fullNameError.value = "Mínim 3 caràcters"
+            return false
+        }
+
+        _fullNameError.value = ""
+        return true
+    }
 }
