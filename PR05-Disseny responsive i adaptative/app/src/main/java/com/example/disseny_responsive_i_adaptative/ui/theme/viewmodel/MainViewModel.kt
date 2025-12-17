@@ -3,6 +3,7 @@ package com.example.disseny_responsive_i_adaptative.ui.theme.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import android.util.Patterns
 
 class MainViewModel: ViewModel() {
     //Estados de los campos del formulario
@@ -122,6 +123,25 @@ class MainViewModel: ViewModel() {
         }
 
         _birthDateError.value = ""
+        return true
+    }
+
+    private fun validateEmail(): Boolean {
+        val email = _email.value
+
+        if (email.isNullOrBlank()) {
+            _emailError.value = "L'email és obligatori"
+            return false
+        }
+
+        val isValid = Patterns.EMAIL_ADDRESS.matcher(email).matches()
+
+        if (!isValid) {
+            _emailError.value = "Email no vàlid"
+            return false
+        }
+
+        _emailError.value = ""
         return true
     }
 
