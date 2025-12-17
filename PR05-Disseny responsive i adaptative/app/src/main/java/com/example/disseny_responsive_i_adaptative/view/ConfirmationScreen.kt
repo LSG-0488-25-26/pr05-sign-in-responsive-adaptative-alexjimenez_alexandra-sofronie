@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -27,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material3.OutlinedButton
 import androidx.navigation.NavController
 import com.example.disseny_responsive_i_adaptative.navigation.Routes
 
@@ -138,6 +141,62 @@ fun ConfirmationScreen(navController: NavController, username: String) {
                             InfoItem("📱", "Descarrega la app")
                             InfoItem("🗓️", "Reserva la teva classe")
                             InfoItem("🎉", "Gaudeix del primer mes!")
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(32.dp))
+
+                    // Botons (adaptatius segons mida)
+                    if (!isCompact) { //si NO es isCompact (tablets)
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            OutlinedButton(     //Button con borde
+                                onClick = {
+                                    navController.navigate(Routes.Register.route) {
+                                        //Limpia el historial para evitar volver atrás
+                                        popUpTo(Routes.Register.route) { inclusive = true }
+                                    }
+                                },
+
+                                modifier = Modifier.weight(1f).height(50.dp)
+
+                            ) {
+                                Text("Tornar al registre", fontSize = 16.sp)
+                            }
+                            Button(
+                                onClick = { /* Navegar a inici */ },
+                                modifier = Modifier.weight(1f).height(50.dp),
+                                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF6200EE))
+                            ) {
+                                Text("Anar a l'inici", fontSize = 16.sp)
+                            }
+                        }
+
+                    } else {
+                        Column(modifier = Modifier.fillMaxWidth()) {
+                            Button(
+                                onClick = { /* Navegar a inici */ },
+                                modifier = Modifier.fillMaxWidth().height(50.dp),
+                                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF6200EE))
+                            ) {
+                                Text("Anar a l'inici", fontSize = 16.sp)
+                            }
+
+                            Spacer(modifier = Modifier.height(12.dp))
+
+                            OutlinedButton(     //Button con borde
+                                onClick = {
+                                    navController.navigate(Routes.Register.route) {
+                                        //Limpia el historial para evitar volver atrás
+                                        popUpTo(Routes.Register.route) { inclusive = true }
+                                    }
+                                },
+                                modifier = Modifier.fillMaxWidth().height(50.dp)
+                            ) {
+                                Text("Tornar", fontSize = 16.sp)
+                            }
                         }
                     }
                 }
