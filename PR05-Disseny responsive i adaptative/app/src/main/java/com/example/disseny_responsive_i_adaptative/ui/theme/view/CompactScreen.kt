@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -91,6 +92,25 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 16.dp)
         )
+
+        OutlinedTextField(
+            value = fullName,
+            onValueChange = { viewModel.onFullNameChange(it) },
+            label = { Text("Nom complet") },
+            isError = fullNameError != null,
+            supportingText = {
+                if (fullNameError != null) {
+                    Text(
+                        text = fullNameError,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
 
     }
 }
