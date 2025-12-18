@@ -20,6 +20,9 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -38,6 +41,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.disseny_responsive_i_adaptative.navigation.Routes
 import com.example.disseny_responsive_i_adaptative.viewmodel.MainViewModel
 
 /**
@@ -184,6 +188,7 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                     colors = CardDefaults.cardColors(containerColor = Color.White),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                 ) {
+                    //Formulari de Registre
                     Column(modifier = Modifier.padding(32.dp)) {
                         Text(
                             "Formulari de Registre",
@@ -209,6 +214,7 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                         )
                         Spacer(modifier = Modifier.height(12.dp))
 
+                        //Data de naixement
                         OutlinedTextField(
                             value = birthDate, onValueChange = { viewModel.onBirthDateChange(it) },
                             label = { Text("Data naixement") }, isError = birthDateError.isNotEmpty(),
@@ -225,6 +231,8 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                         Spacer(modifier = Modifier.height(12.dp))
 
                         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+
+                            //Email
                             OutlinedTextField(
                                 value = email, onValueChange = { viewModel.onEmailChange(it) },
                                 label = { Text("Email") }, isError = emailError.isNotEmpty(),
@@ -238,6 +246,8 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                                 modifier = Modifier.weight(1f), singleLine = true,
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
                             )
+
+                            //Telefon
                             OutlinedTextField(
                                 value = phone, onValueChange = { viewModel.onPhoneChange(it) },
                                 label = { Text("Telèfon") }, isError = phoneError.isNotEmpty(),
@@ -255,6 +265,7 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
 
                         Spacer(modifier = Modifier.height(12.dp))
 
+                        //Nom d'usuari
                         OutlinedTextField(
                             value = username, onValueChange = { viewModel.onUsernameChange(it) },
                             label = { Text("Nom d'usuari") }, isError = usernameError.isNotEmpty(),
@@ -271,12 +282,16 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                         Spacer(modifier = Modifier.height(12.dp))
 
                         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            
+                            //Contraseña
                             OutlinedTextField(
                                 value = password, onValueChange = { viewModel.onPasswordChange(it) },
                                 label = { Text("Contrasenya") }, isError = passwordError.isNotEmpty(),
                                 supportingText = { 
                                     if (passwordError.isNotEmpty()) {
-                                        Text(passwordError, color = MaterialTheme.colorScheme.error, fontSize = 11.sp)
+                                        Text(passwordError,
+                                            color = MaterialTheme.colorScheme.error,
+                                            fontSize = 11.sp)
                                     }
                                 },
                                 
@@ -291,7 +306,8 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                                     }
                                 }
                             )
-                            
+
+                            //Confirmar
                             OutlinedTextField(
                                 value = confirmPassword, onValueChange = { viewModel.onConfirmPasswordChange(it) },
                                 label = { Text("Confirmar") }, isError = confirmPasswordError.isNotEmpty(),
@@ -315,6 +331,36 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                         }
 
                         Spacer(modifier = Modifier.height(20.dp))
+
+                        //Termes i condicions
+                        Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                            Checkbox(checked = termsAccepted, onCheckedChange = { viewModel.onTermsAcceptedChange(it) })
+                            Text("Accepto els termes i condicions",
+                                fontSize = 14.sp,
+                                modifier = Modifier.padding(start = 8.dp))
+                        }
+                        if (showError && !termsAccepted) {
+                            Text("Has d'acceptar els termes",
+                                color = MaterialTheme.colorScheme.error,
+                                fontSize = 12.sp, modifier = Modifier.padding(start = 48.dp))
+                        }
+                        Spacer(modifier = Modifier.height(24.dp))
+
+                        //Boton registrarme ahora
+                        Button(
+                            onClick = {
+                                showError = true
+                                if (viewModel.validateAll()) {
+                                    navController.navigate(Routes.Confirmation.createRoute(username))
+                                }
+                            },
+                            modifier = Modifier.fillMaxWidth().height(56.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF6200EE))
+                        ) {
+                            Text("Registrar-me ara",
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold)
+                        }
                     }
                 }
             }
