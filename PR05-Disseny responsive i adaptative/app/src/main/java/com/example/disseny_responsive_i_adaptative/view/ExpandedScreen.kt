@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -107,6 +109,65 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                 }
             }
         }
+
         Spacer(modifier = Modifier.height(32.dp))
+
+        // Layout 2 columnes
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 48.dp)
+                .verticalScroll(rememberScrollState()),
+            horizontalArrangement = Arrangement.spacedBy(48.dp)
+        ) {
+            // Columna esquerra - Info
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    "Uneix-te a FitLife",
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF6200EE)
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                ) {
+                    Column(modifier = Modifier.padding(24.dp)) {
+                        Text(
+                            "Beneficis de ser soci:",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        BenefitItem("🎯", "Accés il·limitat 24/7")
+                        BenefitItem("👥", "Classes dirigides gratuïtes")
+                        BenefitItem("🏊", "Piscina i spa")
+                        BenefitItem("🧘", "Zona de ioga i pilates")
+                        BenefitItem("🤸", "Entrenador personal")
+                        BenefitItem("🍎", "Assessorament nutricional")
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(24.dp))
+            }
+        }
+    }
+}
+
+/*Funcio para los icons y texto de la columna esquerra,
+es decir, sirve para mostrar cada item de beneficio
+con su icono dentro de la card
+ */
+@Composable
+fun BenefitItem(icon: String, text: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(icon, fontSize = 24.sp, modifier = Modifier.padding(end = 12.dp))
+        Text(text, fontSize = 16.sp)
     }
 }
