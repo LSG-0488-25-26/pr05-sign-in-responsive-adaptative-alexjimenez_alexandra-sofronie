@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -46,13 +47,14 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
     val confirmPassword by viewModel.confirmPassword.observeAsState("")
     val termsAccepted by viewModel.termsAccepted.observeAsState(false)
 
-    val fullNameError by viewModel.fullNameError.observeAsState()
-    val birthDateError by viewModel.birthDateError.observeAsState()
-    val emailError by viewModel.emailError.observeAsState()
-    val phoneError by viewModel.phoneError.observeAsState()
-    val usernameError by viewModel.usernameError.observeAsState()
-    val passwordError by viewModel.passwordError.observeAsState()
-    val confirmPasswordError by viewModel.confirmPasswordError.observeAsState()
+    //Observa los errores de validación del ViewModel
+    val fullNameError by viewModel.fullNameError.observeAsState("")
+    val birthDateError by viewModel.birthDateError.observeAsState("")
+    val emailError by viewModel.emailError.observeAsState("")
+    val phoneError by viewModel.phoneError.observeAsState("")
+    val usernameError by viewModel.usernameError.observeAsState("")
+    val passwordError by viewModel.passwordError.observeAsState("")
+    val confirmPasswordError by viewModel.confirmPasswordError.observeAsState("")
 
     var passwordVisible by remember { mutableStateOf(false) }
     var confirmPasswordVisible by remember { mutableStateOf(false) }
@@ -63,7 +65,7 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
             .fillMaxSize()
             .background(Color(0xFFF5F5F5))
     ) {
-        // Banner amplio
+        // Card amplia
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = Color(0xFF6200EE)),
@@ -160,6 +162,41 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                     Column(modifier = Modifier.padding(24.dp)) {
                         Text("💪 Oferta especial", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color(0xFF2E7D32))
                         Text("Primer mes gratuït!", fontSize = 14.sp, color = Color(0xFF2E7D32), modifier = Modifier.padding(top = 8.dp))
+                    }
+                }
+            }
+
+            // Columna dreta - Formulari
+            Column(modifier = Modifier.weight(1f)) {
+                //card
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                ) {
+                    Column(modifier = Modifier.padding(32.dp)) {
+                        Text(
+                            "Formulari de Registre",
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(bottom = 24.dp)
+                        )
+
+                        OutlinedTextField(  //textfield con borde alrededor
+                            value = fullName, onValueChange = { viewModel.onFullNameChange(it) },
+                            label = { Text("Nom complet") }, isError = fullNameError.isNotEmpty(),
+                            supportingText = {
+                                if (fullNameError.isNotEmpty()) {
+                                    Text(
+                                        fullNameError,
+                                        color = MaterialTheme.colorScheme.error,
+                                        fontSize = 12.sp
+                                    )
+                                }
+                            },
+                            modifier = Modifier.fillMaxWidth(), singleLine = true
+                        )
+                        Spacer(modifier = Modifier.height(12.dp))
                     }
                 }
             }
