@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.Composable
@@ -26,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -144,6 +146,7 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                             fontWeight = FontWeight.Bold
                         )
                         Spacer(modifier = Modifier.height(16.dp))
+                        
                         BenefitItem("🎯", "Accés il·limitat 24/7")
                         BenefitItem("👥", "Classes dirigides gratuïtes")
                         BenefitItem("🏊", "Piscina i spa")
@@ -185,6 +188,7 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                         OutlinedTextField(  //textfield con borde alrededor
                             value = fullName, onValueChange = { viewModel.onFullNameChange(it) },
                             label = { Text("Nom complet") }, isError = fullNameError.isNotEmpty(),
+                            
                             supportingText = {
                                 if (fullNameError.isNotEmpty()) {
                                     Text(
@@ -196,6 +200,51 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                             },
                             modifier = Modifier.fillMaxWidth(), singleLine = true
                         )
+                        Spacer(modifier = Modifier.height(12.dp))
+
+                        OutlinedTextField(
+                            value = birthDate, onValueChange = { viewModel.onBirthDateChange(it) },
+                            label = { Text("Data naixement") }, isError = birthDateError.isNotEmpty(),
+                            
+                            supportingText = { 
+                                if (birthDateError.isNotEmpty()) {
+                                    Text(birthDateError, color = MaterialTheme.colorScheme.error, fontSize = 12.sp)
+                                }
+                            },
+                            
+                            modifier = Modifier.fillMaxWidth(), singleLine = true,
+                            placeholder = { Text("DD/MM/AAAA") }
+                        )
+                        Spacer(modifier = Modifier.height(12.dp))
+
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            OutlinedTextField(
+                                value = email, onValueChange = { viewModel.onEmailChange(it) },
+                                label = { Text("Email") }, isError = emailError.isNotEmpty(),
+                                
+                                supportingText = { 
+                                    if (emailError.isNotEmpty()) {
+                                        Text(emailError, color = MaterialTheme.colorScheme.error, fontSize = 11.sp)
+                                    }
+                                },
+                                
+                                modifier = Modifier.weight(1f), singleLine = true,
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+                            )
+                            OutlinedTextField(
+                                value = phone, onValueChange = { viewModel.onPhoneChange(it) },
+                                label = { Text("Telèfon") }, isError = phoneError.isNotEmpty(),
+                                
+                                supportingText = { 
+                                    if (phoneError.isNotEmpty()) {
+                                        Text(phoneError, color = MaterialTheme.colorScheme.error, fontSize = 11.sp)
+                                    }
+                                },
+                                
+                                modifier = Modifier.weight(1f), singleLine = true,
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                            )
+                        }
                         Spacer(modifier = Modifier.height(12.dp))
                     }
                 }
