@@ -152,6 +152,16 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
+
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFE8F5E9))
+                ) {
+                    Column(modifier = Modifier.padding(24.dp)) {
+                        Text("💪 Oferta especial", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color(0xFF2E7D32))
+                        Text("Primer mes gratuït!", fontSize = 14.sp, color = Color(0xFF2E7D32), modifier = Modifier.padding(top = 8.dp))
+                    }
+                }
             }
         }
     }
