@@ -246,6 +246,21 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                             )
                         }
                         Spacer(modifier = Modifier.height(12.dp))
+
+                        OutlinedTextField(
+                            value = username, onValueChange = { viewModel.onUsernameChange(it) },
+                            label = { Text("Nom d'usuari") }, isError = usernameError.isNotEmpty(),
+
+                            supportingText = {
+                                if (usernameError.isNotEmpty()) {
+                                    Text(usernameError, color = MaterialTheme.colorScheme.error, fontSize = 12.sp)
+                                }
+                            },
+
+                            modifier = Modifier.fillMaxWidth(), singleLine = true
+                        )
+
+                        Spacer(modifier = Modifier.height(12.dp))
                     }
                 }
             }
