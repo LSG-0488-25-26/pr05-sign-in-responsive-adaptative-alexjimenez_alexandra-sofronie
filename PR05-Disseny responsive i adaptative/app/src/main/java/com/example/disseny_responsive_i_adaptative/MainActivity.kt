@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -18,6 +20,8 @@ import com.example.disseny_responsive_i_adaptative.ui.theme.Disseny_Responsive_i
 import com.example.disseny_responsive_i_adaptative.navigation.Routes
 import com.example.disseny_responsive_i_adaptative.view.CompactScreen
 import com.example.disseny_responsive_i_adaptative.view.ConfirmationScreen
+import com.example.disseny_responsive_i_adaptative.view.ExpandedScreen
+import com.example.disseny_responsive_i_adaptative.view.MediumScreen
 import com.example.disseny_responsive_i_adaptative.viewmodel.MainViewModel
 
 class MainActivity : ComponentActivity() {
@@ -62,5 +66,53 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+}
+
+//Preview para CompactScreen
+@Preview(showBackground = true, name = "Compact Screen")
+@Composable
+fun CompactScreenPreview() {
+    Disseny_Responsive_i_AdaptativeTheme {
+        CompactScreen(
+            navController = rememberNavController(),
+            viewModel = viewModel()
+        )
+    }
+}
+
+//Preview para ConfirmationScreen
+@Preview(showBackground = true, name = "Confirmation Screen")
+@Composable
+fun ConfirmationScreenPreview() {
+    Disseny_Responsive_i_AdaptativeTheme {
+        ConfirmationScreen(
+            navController = rememberNavController(),
+            username = "AlexJimenez"
+        )
+    }
+}
+
+//Preview para ExpandedScreen
+@Preview(showBackground = true, name = "Expanded Screen")
+@Composable
+fun ExpandedScreenPreview() {
+    Disseny_Responsive_i_AdaptativeTheme {
+        ExpandedScreen(
+            navController = rememberNavController(),
+            viewModel = viewModel()
+        )
+    }
+}
+
+//Preview para MediumScreen
+@Preview(showBackground = true, name = "Medium Screen")
+@Composable
+fun MediumScreenPreview() {
+    Disseny_Responsive_i_AdaptativeTheme {
+        MediumScreen(
+            navController = rememberNavController(),
+            viewModel = viewModel()
+        )
     }
 }
