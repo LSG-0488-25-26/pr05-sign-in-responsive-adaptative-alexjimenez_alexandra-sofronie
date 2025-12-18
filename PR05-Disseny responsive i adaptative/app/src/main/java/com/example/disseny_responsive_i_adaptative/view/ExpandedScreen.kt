@@ -17,6 +17,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.Composable
@@ -28,6 +33,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -245,6 +252,7 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                             )
                         }
+
                         Spacer(modifier = Modifier.height(12.dp))
 
                         OutlinedTextField(
@@ -261,6 +269,52 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                         )
 
                         Spacer(modifier = Modifier.height(12.dp))
+
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            OutlinedTextField(
+                                value = password, onValueChange = { viewModel.onPasswordChange(it) },
+                                label = { Text("Contrasenya") }, isError = passwordError.isNotEmpty(),
+                                supportingText = { 
+                                    if (passwordError.isNotEmpty()) {
+                                        Text(passwordError, color = MaterialTheme.colorScheme.error, fontSize = 11.sp)
+                                    }
+                                },
+                                
+                                modifier = Modifier.weight(1f), singleLine = true,
+                                
+                                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                                
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                                trailingIcon = {
+                                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                                        Icon(if (passwordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility, "Toggle")
+                                    }
+                                }
+                            )
+                            
+                            OutlinedTextField(
+                                value = confirmPassword, onValueChange = { viewModel.onConfirmPasswordChange(it) },
+                                label = { Text("Confirmar") }, isError = confirmPasswordError.isNotEmpty(),
+                                supportingText = { 
+                                    if (confirmPasswordError.isNotEmpty()) {
+                                        Text(confirmPasswordError, color = MaterialTheme.colorScheme.error, fontSize = 11.sp)
+                                    }
+                                },
+                                
+                                modifier = Modifier.weight(1f), singleLine = true,
+                                
+                                visualTransformation = if (confirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                                trailingIcon = {
+                                    IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
+                                        Icon(if (confirmPasswordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility, "Toggle")
+                                    }
+                                }
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(20.dp))
                     }
                 }
             }
