@@ -10,9 +10,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -26,6 +32,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -120,6 +129,7 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
 
                     var passwordVisible by remember { mutableStateOf(false) }
 
+                    // Campo usuario
                     OutlinedTextField(
                         value = loginUsername,
                         onValueChange = { viewModel.onUsernameChange(it) },
@@ -131,6 +141,40 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
+                    // Campo contraseña
+                    OutlinedTextField(
+                        value = loginPassword,
+                        onValueChange = { viewModel.onPasswordChange(it) },
+                        label = { Text("Contrasenya") },
+                        isError = loginError.isNotEmpty(),
+                        supportingText = {
+                            if (loginError.isNotEmpty()) {
+                                Text(
+                                    text = loginError,
+                                    color = MaterialTheme.colorScheme.error,
+                                    fontSize = 12.sp
+                                )
+                            }
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        singleLine = true,
+                        visualTransformation = if (passwordVisible) {
+                            VisualTransformation.None
+                        } else {
+                            PasswordVisualTransformation()
+                        },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                        trailingIcon = {
+                            IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                                Icon(
+                                    imageVector = if (passwordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
+                                    contentDescription = if (passwordVisible) "Amagar contrasenya" else "Mostrar contrasenya"
+                                )
+                            }
+                        }
+                    )
+
+                    Spacer(modifier = Modifier.height(24.dp))
 
                 }
             }
