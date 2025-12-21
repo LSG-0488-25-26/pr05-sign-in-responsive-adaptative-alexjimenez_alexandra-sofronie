@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = Routes.Register.route,
+                        startDestination = Routes.Login.route,
                         modifier = Modifier.padding(innerPadding)
                     ) {
                         composable(Routes.Login.route) {

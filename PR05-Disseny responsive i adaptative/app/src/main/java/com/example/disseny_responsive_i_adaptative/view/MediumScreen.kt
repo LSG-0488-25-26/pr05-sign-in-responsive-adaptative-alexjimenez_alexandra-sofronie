@@ -368,9 +368,7 @@ fun MediumScreen(navController: NavController, viewModel: MainViewModel) {
                     if (isValid) {
                         val registroExitoso = viewModel.registerUser()
                         if (registroExitoso) {
-                            viewModel.clearAllErrors()
                             viewModel.resetForm()
-                            viewModel.limpiarLogin()
                             navController.navigate(Routes.Login.route)
                         }
                     }

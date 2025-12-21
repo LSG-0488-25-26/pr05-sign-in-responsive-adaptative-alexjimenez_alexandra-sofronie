@@ -353,9 +353,7 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                                 if (viewModel.validateAll()) {
                                     val registroExitoso = viewModel.registerUser()
                                     if (registroExitoso) {
-                                        viewModel.clearAllErrors()
                                         viewModel.resetForm()
-                                        viewModel.limpiarLogin()
                                         navController.navigate(Routes.Login.route)
                                     }
                                 }

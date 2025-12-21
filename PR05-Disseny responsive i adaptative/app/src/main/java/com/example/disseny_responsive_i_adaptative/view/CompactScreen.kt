@@ -324,12 +324,11 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
             Button(
                 onClick = {
                     showError = true
+                    val isValid = viewModel.validateAll()
                     if (viewModel.validateAll()) {
                         val registroExitoso = viewModel.registerUser()
                         if (registroExitoso) {
                             viewModel.resetForm()
-                            viewModel.clearAllErrors()
-                            viewModel.limpiarLogin()
                             navController.navigate(Routes.Login.route)
                         }
                     }

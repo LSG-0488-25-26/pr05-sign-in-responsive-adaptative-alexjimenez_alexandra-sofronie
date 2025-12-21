@@ -287,13 +287,7 @@ class MainViewModel: ViewModel() {
         _confirmPassword.value = ""         //Borra la confirmación
         _termsAccepted.value = false        //Desmarca los términos
 
-        _fullNameError.value = ""           //Limpia error del nombre completo
-        _birthDateError.value = ""          //Limpia error de la fecha de nacimiento
-        _emailError.value = ""              //Limpia error del email
-        _phoneError.value = ""              //Limpia error del teléfono
-        _usernameError.value = ""           //Limpia error del usuario
-        _passwordError.value = ""           //Limpia error de la contraseña
-        _confirmPasswordError.value = ""    //Limpia error de confirmación de contraseña
+        clearAllErrors()                    //Limpia los errores
     }
 
     // Función para registrar usuario
@@ -320,10 +314,12 @@ class MainViewModel: ViewModel() {
                 usuarioYaExiste = true
                 break
             }
-
+        }
+        if (!usuarioYaExiste) {
             registeredUsers.add(user)
             return true
         }
+
         return false
     }
 
