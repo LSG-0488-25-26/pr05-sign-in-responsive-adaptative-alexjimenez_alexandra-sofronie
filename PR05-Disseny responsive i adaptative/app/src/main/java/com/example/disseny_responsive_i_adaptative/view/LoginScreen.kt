@@ -134,8 +134,11 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
                     // Campo usuario
                     OutlinedTextField(
                         value = username,
-                        onValueChange = { viewModel.onUsernameChange(it) },
-                        label = { Text("Nom d'usuari") },
+                        onValueChange = {
+                            viewModel.onUsernameChange(it)
+                            loginError = ""
+                        },
+                        label = { Text("Nom d'usuari o Email") },
                         isError = loginError.isNotEmpty(),
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true
@@ -146,7 +149,10 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
                     // Campo contraseña
                     OutlinedTextField(
                         value = password,
-                        onValueChange = { viewModel.onPasswordChange(it) },
+                        onValueChange = {
+                            viewModel.onPasswordChange(it)
+                            loginError = ""
+                        },
                         label = { Text("Contrasenya") },
                         isError = loginError.isNotEmpty(),
                         supportingText = {
@@ -186,7 +192,13 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
                             } else if (password.isBlank()) {
                                 loginError = "Introdueix la teva contrasenya"
                             } else {
-                                navController.navigate("confirmation/$username")
+                                val loginCorrecto = viewModel.login(username, password)
+                                if (loginCorrecto) {
+                                    val usuario = viewModel.getUsernameForLogin(username)
+                                    navController.navigate("confirmation/$usuario")
+                                } else {
+                                    loginError = "Credencials incorrectes"
+                                }
                             }
                         },
                         modifier = Modifier
