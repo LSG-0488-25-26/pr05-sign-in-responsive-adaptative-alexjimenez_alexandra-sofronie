@@ -1,6 +1,7 @@
 package com.example.disseny_responsive_i_adaptative.navigation
 
 sealed class Routes(val route: String) {
+    object Login : Routes("login")
     object Register : Routes("register")
     object Confirmation : Routes("confirmation/{username}")
 
