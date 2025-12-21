@@ -4,10 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import android.util.Patterns
+import com.example.disseny_responsive_i_adaptative.model.User
 import kotlin.text.iterator
 
 class MainViewModel: ViewModel() {
     //Estados de los campos del formulario
+    private val registeredUsers = mutableListOf<User>()
     private val _fullName = MutableLiveData("")
     val fullName: LiveData<String> = _fullName
 
@@ -103,7 +105,7 @@ class MainViewModel: ViewModel() {
         _fullNameError.value = ""
         return true
     }
-    
+
     //Funcion para validad la fecha de nacimiento
     private fun validateBirthDate(): Boolean {
         val date = _birthDate.value.orEmpty()
@@ -148,6 +150,7 @@ class MainViewModel: ViewModel() {
         _emailError.value = ""
         return true
     }
+
     //funcion para validar el numero de telefono
     private fun validatePhone(): Boolean {
         val phone = _phone.value.orEmpty()
@@ -254,7 +257,8 @@ class MainViewModel: ViewModel() {
 
         if (isValidFullName && isValidBirthDate && isValidEmail &&
             isValidPhone && isValidUsername && isValidPassword &&
-            isValidConfirmPassword && isValidTerms) {
+            isValidConfirmPassword && isValidTerms
+        ) {
             return true
         } else {
             return false
@@ -290,5 +294,73 @@ class MainViewModel: ViewModel() {
         _usernameError.value = ""           //Limpia error del usuario
         _passwordError.value = ""           //Limpia error de la contraseña
         _confirmPasswordError.value = ""    //Limpia error de confirmación de contraseña
+    }
+
+    // Función para registrar usuario
+    fun registerUser(): Boolean {
+        val user = User(
+            fullName = _fullName.value.orEmpty(),
+            birthDate = _birthDate.value.orEmpty(),
+            email = _email.value.orEmpty(),
+            phone = _phone.value.orEmpty(),
+            username = _username.value.orEmpty(),
+            password = _password.value.orEmpty()
+        )
+
+        if (!user.isValid()) {
+            return false
+        }
+
+        var usuarioYaExiste = false
+
+        for (usuarioGuardado in registeredUsers) {
+            val mismoUsername = (usuarioGuardado.username == user.username)
+            val mismoEmail = (usuarioGuardado.email == user.email)
+            if (mismoUsername || mismoEmail) {
+                usuarioYaExiste = true
+                break
+            }
+
+            registeredUsers.add(user)
+            return true
+        }
+        return false
+    }
+
+    fun login(usernameOrEmail: String, password: String): Boolean {
+
+        var credencialesCorrectas = false
+
+        for (usuario in registeredUsers) {
+
+            val usuarioCoincide = (usuario.username == usernameOrEmail)
+            val emailCoincide = (usuario.email == usernameOrEmail)
+            val passwordCoincide = (usuario.password == password)
+
+            if ((usuarioCoincide || emailCoincide) && passwordCoincide) {
+                credencialesCorrectas = true
+                break
+            }
+        }
+
+        return credencialesCorrectas
+    }
+
+    fun getUsernameForLogin(usernameOrEmail: String): String {
+
+        var usernameEncontrado = usernameOrEmail
+
+        for (usuario in registeredUsers) {
+
+            val esMismoUsuario = (usuario.username == usernameOrEmail)
+            val esMismoEmail = (usuario.email == usernameOrEmail)
+
+            if (esMismoUsuario || esMismoEmail) {
+                usernameEncontrado = usuario.username
+                break
+            }
+        }
+
+        return usernameEncontrado
     }
 }

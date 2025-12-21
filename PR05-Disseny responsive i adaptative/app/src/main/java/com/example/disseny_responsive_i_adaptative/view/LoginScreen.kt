@@ -15,6 +15,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -123,17 +125,17 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
                         color = Color(0xFF6200EE),
                         modifier = Modifier.padding(bottom = 24.dp)
                     )
-                    val loginUsername by viewModel.username.observeAsState("")
-                    val loginPassword by viewModel.password.observeAsState("")
-                    val loginError by viewModel.passwordError.observeAsState("")
+                    val username by viewModel.username.observeAsState("")
+                    val password by viewModel.password.observeAsState("")
+                    var loginError by remember { mutableStateOf("") }
 
                     var passwordVisible by remember { mutableStateOf(false) }
 
                     // Campo usuario
                     OutlinedTextField(
-                        value = loginUsername,
+                        value = username,
                         onValueChange = { viewModel.onUsernameChange(it) },
-                        label = { Text("Nom d'usuari o Email") },
+                        label = { Text("Nom d'usuari") },
                         isError = loginError.isNotEmpty(),
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true
@@ -143,7 +145,7 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
 
                     // Campo contraseña
                     OutlinedTextField(
-                        value = loginPassword,
+                        value = password,
                         onValueChange = { viewModel.onPasswordChange(it) },
                         label = { Text("Contrasenya") },
                         isError = loginError.isNotEmpty(),
@@ -175,6 +177,33 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
                     )
 
                     Spacer(modifier = Modifier.height(24.dp))
+
+                    // Botón de login
+                    Button(
+                        onClick = {
+                            if (username.isBlank()) {
+                                loginError = "Introdueix el teu usuari"
+                            } else if (password.isBlank()) {
+                                loginError = "Introdueix la teva contrasenya"
+                            } else {
+                                navController.navigate("confirmation/$username")
+                            }
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFF6200EE)
+                        )
+                    ) {
+                        Text(
+                            text = "Iniciar Sessió",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
 
                 }
             }

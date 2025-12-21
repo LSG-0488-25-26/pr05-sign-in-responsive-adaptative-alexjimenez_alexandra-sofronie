@@ -25,4 +25,26 @@ data class User(
                 username.isNotEmpty() &&
                 password.isNotEmpty()
     }
+
+    fun credentialsMatch(inputUsernameOrEmail: String, inputPassword: String): Boolean {
+
+        var usuarioCorrecto = false
+        var contraseñaCorrecta = false
+
+        if (username == inputUsernameOrEmail) {
+            usuarioCorrecto = true
+        } else if (email == inputUsernameOrEmail) {
+            usuarioCorrecto = true
+        } else {
+            usuarioCorrecto = false
+        }
+
+        if (password == inputPassword) {
+            contraseñaCorrecta = true
+        } else {
+            contraseñaCorrecta = false
+        }
+
+        return usuarioCorrecto && contraseñaCorrecta
+    }
 }
