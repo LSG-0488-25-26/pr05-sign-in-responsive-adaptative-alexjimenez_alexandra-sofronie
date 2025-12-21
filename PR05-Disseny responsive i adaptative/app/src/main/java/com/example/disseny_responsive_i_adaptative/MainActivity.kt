@@ -21,6 +21,7 @@ import com.example.disseny_responsive_i_adaptative.navigation.Routes
 import com.example.disseny_responsive_i_adaptative.view.CompactScreen
 import com.example.disseny_responsive_i_adaptative.view.ConfirmationScreen
 import com.example.disseny_responsive_i_adaptative.view.ExpandedScreen
+import com.example.disseny_responsive_i_adaptative.view.LoginScreen
 import com.example.disseny_responsive_i_adaptative.view.MediumScreen
 import com.example.disseny_responsive_i_adaptative.viewmodel.MainViewModel
 
@@ -39,6 +40,12 @@ class MainActivity : ComponentActivity() {
                         startDestination = Routes.Register.route,
                         modifier = Modifier.padding(innerPadding)
                     ) {
+                        composable(Routes.Login.route) {
+                            LoginScreen(
+                                navController = navController,
+                                viewModel = viewModel
+                            )
+                        }
                         composable(Routes.Register.route) {
                             CompactScreen(
                                 navController = navController,
