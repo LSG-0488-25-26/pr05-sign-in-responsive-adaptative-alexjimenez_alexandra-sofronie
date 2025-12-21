@@ -363,4 +363,9 @@ class MainViewModel: ViewModel() {
 
         return usernameEncontrado
     }
+
+    fun limpiarLogin() {
+        _username.value = ""
+        _password.value = ""
+    }
 }
