@@ -288,6 +288,7 @@ class MainViewModel: ViewModel() {
         _termsAccepted.value = false        //Desmarca los términos
 
         clearAllErrors()                    //Limpia los errores
+        limpiarLogin()                      //Limpia el login
     }
 
     // Función para registrar usuario
