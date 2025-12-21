@@ -41,6 +41,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.disseny_responsive_i_adaptative.navigation.Routes
 import com.example.disseny_responsive_i_adaptative.viewmodel.MainViewModel
 
 @Composable
@@ -365,7 +366,10 @@ fun MediumScreen(navController: NavController, viewModel: MainViewModel) {
                     showError = true
                     val isValid = viewModel.validateAll()
                     if (isValid) {
-                        navController.navigate("confirmation/$username")
+                        val registroExitoso = viewModel.registerUser()
+                        if (registroExitoso) {
+                            navController.navigate(Routes.Login.route)
+                        }
                     }
                 },
                 modifier = Modifier

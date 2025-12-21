@@ -351,7 +351,10 @@ fun ExpandedScreen(navController: NavController, viewModel: MainViewModel) {
                             onClick = {
                                 showError = true
                                 if (viewModel.validateAll()) {
-                                    navController.navigate(Routes.Confirmation.createRoute(username))
+                                    val registroExitoso = viewModel.registerUser()
+                                    if (registroExitoso) {
+                                        navController.navigate(Routes.Login.route)
+                                    }
                                 }
                             },
                             modifier = Modifier.fillMaxWidth().height(56.dp),

@@ -42,6 +42,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.disseny_responsive_i_adaptative.navigation.Routes
 
 @Composable
 fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
@@ -323,9 +324,11 @@ fun CompactScreen(navController: NavController, viewModel: MainViewModel) {
             Button(
                 onClick = {
                     showError = true
-                    val isValid = viewModel.validateAll()
-                    if (isValid) {
-                        navController.navigate("confirmation/$username")
+                    if (viewModel.validateAll()) {
+                        val registroExitoso = viewModel.registerUser()
+                        if (registroExitoso) {
+                            navController.navigate(Routes.Login.route)
+                        }
                     }
                 },
                 modifier = Modifier
