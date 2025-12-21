@@ -4,17 +4,24 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.disseny_responsive_i_adaptative.viewmodel.MainViewModel
 
@@ -38,6 +45,71 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            // Banner/Header
+            Card(
+                modifier = Modifier.fillMaxWidth(
+                    when {
+                        isCompact -> 1f
+                        isMedium -> 0.9f
+                        else -> 0.7f
+                    }
+                ),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF6200EE)),
+                shape = MaterialTheme.shapes.medium
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            if (isCompact) 16.dp else 24.dp
+                        ),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "🏋 FitLife Gym",
+                        fontSize = if (isCompact) 28.sp else 36.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "El teu wellness comença aquí",
+                        fontSize = if (isCompact) 16.sp else 20.sp,
+                        color = Color.White.copy(alpha = 0.9f)
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Card del formulario de Login
+            Card(
+                modifier = Modifier.fillMaxWidth(
+                    when {
+                        isCompact -> 1f
+                        isMedium -> 0.8f
+                        else -> 0.6f
+                    }
+                ),
+                colors = CardDefaults.cardColors(containerColor = Color.White),
+                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            if (isCompact) 24.dp else 32.dp
+                        )
+                ) {
+                    Text(
+                        text = "Iniciar Sessió",
+                        fontSize = if (isCompact) 24.sp else 28.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF6200EE),
+                        modifier = Modifier.padding(bottom = 24.dp)
+                    )
+                }
+            }
         }
     }
 }
