@@ -24,6 +24,8 @@ import com.example.disseny_responsive_i_adaptative.view.ExpandedScreen
 import com.example.disseny_responsive_i_adaptative.view.LoginScreen
 import com.example.disseny_responsive_i_adaptative.view.MediumScreen
 import com.example.disseny_responsive_i_adaptative.viewmodel.MainViewModel
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,10 +49,20 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(Routes.Register.route) {
-                            CompactScreen(
-                                navController = navController,
-                                viewModel = viewModel
-                            )
+                            BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+                                val screenType = when {
+                                    maxWidth < 600.dp -> "COMPACT"
+                                    maxWidth >= 600.dp && maxWidth < 840.dp -> "MEDIUM"
+                                    else -> "EXPANDED"
+                                }
+
+                                when (screenType) {
+                                    "COMPACT" -> CompactScreen(navController, viewModel)
+                                    "MEDIUM" -> MediumScreen(navController, viewModel)
+                                    "EXPANDED" -> ExpandedScreen(navController, viewModel)
+                                    else -> CompactScreen(navController, viewModel)
+                                }
+                            }
                         }
                         //Pantalla de confirmación con argumento username
                         composable(
