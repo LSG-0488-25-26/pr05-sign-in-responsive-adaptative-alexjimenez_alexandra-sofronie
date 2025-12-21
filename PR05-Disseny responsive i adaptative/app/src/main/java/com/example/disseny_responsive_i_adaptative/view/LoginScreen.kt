@@ -40,6 +40,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.disseny_responsive_i_adaptative.navigation.Routes
 import com.example.disseny_responsive_i_adaptative.viewmodel.MainViewModel
 
 @Composable
@@ -217,6 +218,20 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
+                    Button(
+                        onClick = {
+                            navController.navigate(Routes.Register.route)
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.White,
+                            contentColor = Color(0xFF6200EE)
+                        )
+                    ) {
+                        Text("No tens compte? Registra't", fontSize = 16.sp)
+                    }
                 }
             }
         }
