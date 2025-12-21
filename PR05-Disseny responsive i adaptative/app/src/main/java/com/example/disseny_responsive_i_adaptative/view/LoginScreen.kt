@@ -14,8 +14,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -108,6 +114,24 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
                         color = Color(0xFF6200EE),
                         modifier = Modifier.padding(bottom = 24.dp)
                     )
+                    val loginUsername by viewModel.username.observeAsState("")
+                    val loginPassword by viewModel.password.observeAsState("")
+                    val loginError by viewModel.passwordError.observeAsState("")
+
+                    var passwordVisible by remember { mutableStateOf(false) }
+
+                    OutlinedTextField(
+                        value = loginUsername,
+                        onValueChange = { viewModel.onUsernameChange(it) },
+                        label = { Text("Nom d'usuari o Email") },
+                        isError = loginError.isNotEmpty(),
+                        modifier = Modifier.fillMaxWidth(),
+                        singleLine = true
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+
                 }
             }
         }
