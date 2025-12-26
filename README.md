@@ -137,19 +137,19 @@ git clone https://github.com/tu-usuario/pr05-sign-in-responsive-adaptative-alexj
 
 ## 🎨 Capturas de Pantalla
 ### Login Screen
-<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/CapturaLoginScreen.png" width="250">
+<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/Captura LoginScreen.png" width="250">
 
 ### Compact Screen
-<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/CapturaCompactScreen.png" width="250">
+<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/Captura CompactScreen.png" width="250">
 
 ### Medium Screen
-<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/CapturaMediumScreen.png" width="250">
+<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/Captura MediumScreen.png" width="250">
 
 ### Expanded Screen
-<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/CapturaExpandedScreen.png" width="250">
+<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/Captura ExpandedScreen.png" width="250">
 
 ### Confirmation Screen
-<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/CapturaConfirmationScreen.png" width="250">
+<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/Captura ConfirmationScreen.png" width="250">
 
 
 ## 🔄 Flujo de la Aplicación
