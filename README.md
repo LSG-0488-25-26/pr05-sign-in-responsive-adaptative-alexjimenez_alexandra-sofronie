@@ -88,7 +88,7 @@ El proyecto sigue el patrón **MVVM (Model-View-ViewModel)**:
 ### Navegación
 - Sistema de rutas con parámetros
 - Flujo de navegación:
-  - `Login` → `Register` → `Confirmation` → `Login`
+  - `Login` → `Register` → `Login` → `Confirmation`
   - Paso de parámetro `username` a la pantalla de confirmación
 
 ## 🎮 Cómo Usar
