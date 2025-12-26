@@ -135,44 +135,84 @@ git clone https://github.com/tu-usuario/pr05-sign-in-responsive-adaptative-alexj
 - Jetpack Compose 1.5+
 
 
-## Capturas de Pantalla
+## 🎨 Capturas de Pantalla
 ### Login Screen
-<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/Captura LoginScreen.png" width="250">
-
-### Confirmation Screen
+<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/CapturaLoginScreen.png" width="250">
 
 ### Compact Screen
+<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/CapturaCompactScreen.png" width="250">
 
 ### Medium Screen
+<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/CapturaMediumScreen.png" width="250">
 
 ### Expanded Screen
+<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/CapturaExpandedScreen.png" width="250">
+
+### Confirmation Screen
+<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/CapturaConfirmationScreen.png" width="250">
 
 
 ## 🔄 Flujo de la Aplicación
 
 ```
-┌─────────────┐
-│ LoginScreen │
-└──────┬──────┘
-       │
-       ├──────────────┐
-       │              │
-       ▼              ▼
-┌──────────┐   ┌────────────────────┐
-│  Login   │   │  Register Screen   │
-│ Exitoso  │   │ (Compact/Medium/   │
-└────┬─────┘   │    Expanded)       │
-     │         └─────────┬──────────┘
-     │                   │
-     │         ┌─────────▼──────────┐
-     └────────►│ ConfirmationScreen │
-               └─────────┬──────────┘
-                         │
-                         ▼
-                   ┌───────────┐
-                   │   Login   │
-                   └───────────┘
+                    ┌─────────────┐
+                    │ LoginScreen │ (Pantalla Inicial)
+                    └──────┬──────┘
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+              ▼                         ▼
+    ┌─────────────────┐      ┌────────────────────┐
+    │  Ya tengo       │      │ No tengo cuenta    │
+    │  cuenta         │      │ Click "Registra't" │
+    └────────┬────────┘      └─────────┬──────────┘
+             │                          │
+             │                          ▼
+             │               ┌────────────────────┐
+             │               │  Register Screen   │
+             │               │ (Compact/Medium/   │
+             │               │    Expanded)       │
+             │               └─────────┬──────────┘
+             │                         │
+             │                         │ Registro
+             │                         │ Exitoso
+             │                         │
+             │                         ▼
+             │               ┌─────────────────┐
+             │               │  Volver al      │
+             │               │  LoginScreen    │
+             │               └─────────┬───────┘
+             │                         │
+             └─────────────┬───────────┘
+                           │
+                           │ Introduce
+                           │ Credenciales
+                           │
+                           ▼
+                 ┌──────────────────┐
+                 │  Login Exitoso   │
+                 └─────────┬────────┘
+                           │
+                           ▼
+                 ┌──────────────────────┐
+                 │ ConfirmationScreen   │
+                 │   (Bienvenida)       │
+                 └──────────────────────┘
 ```
+
+## 📝 Explicación del Flujo
+1. **LoginScreen**: Pantalla inicial con dos opciones
+   - **Opción A**: Ya tengo cuenta → Inicio sesión directamente
+   - **Opción B**: No tengo cuenta → Click en "Registra't"
+
+2. **Register Screen**: Formulario adaptativo (muestra Compact, Medium o Expanded según el tamaño)
+   - Completa el formulario
+   - Click en "Registrar-me"
+   - **Vuelve automáticamente al LoginScreen**
+
+3. **LoginScreen** (segunda vez): Inicia sesión con las credenciales recién creadas
+
+4. **ConfirmationScreen**: Pantalla de bienvenida que muestra el nombre de usuario
 
 ## 💡 Características del Código
 
