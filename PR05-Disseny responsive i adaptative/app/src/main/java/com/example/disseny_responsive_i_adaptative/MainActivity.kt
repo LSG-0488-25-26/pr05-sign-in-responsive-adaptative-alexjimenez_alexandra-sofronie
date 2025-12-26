@@ -88,6 +88,19 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//Preview para LoginScreen
+@Preview(showBackground = true, name = "Login Screen")
+@Composable
+fun LoginScreenPreview() {
+    Disseny_Responsive_i_AdaptativeTheme {
+        LoginScreen(
+            navController = rememberNavController(),
+            viewModel = viewModel()
+        )
+    }
+}
+
+
 //Preview para CompactScreen
 @Preview(showBackground = true, name = "Compact Screen")
 @Composable
