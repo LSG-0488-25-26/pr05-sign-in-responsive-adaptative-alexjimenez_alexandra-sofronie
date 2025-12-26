@@ -137,6 +137,7 @@ git clone https://github.com/tu-usuario/pr05-sign-in-responsive-adaptative-alexj
 
 ## Capturas de Pantalla
 ### Login Screen
+<img src="PR05-Disseny responsive i adaptative/app/src/main/java/com/example/disseny_responsive_i_adaptative/screenshot/Captura LoginScreen.png" width="250">
 
 ### Confirmation Screen
 
